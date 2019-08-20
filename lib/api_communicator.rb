@@ -1,28 +1,28 @@
 def get_events_from_api(zipCode)
-    #make the web request
-    # response_string = RestClient.get('https://app.ticketmaster.com/discovery/v1/events.json?dmaId=300&apikey=37zNi3JGSm5xKVWdPVAKsUJB7cfQVoyg')
-    response_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?postalCode=#{zipCode}&radius=15&unit=miles&apikey=37zNi3JGSm5xKVWdPVAKsUJB7cfQVoyg")
+    
+    response_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?postalCode=#{zipCode}&apikey=37zNi3JGSm5xKVWdPVAKsUJB7cfQVoyg")
     response_hash = JSON.parse(response_string)
 
+    if response_hash.length < 3
+        puts "No events found, please try a different zip code"
+        getZip
+    else
+        eventNameArray = response_hash["_embedded"]["events"].map
+        tempNameArray = []
+        
+        eventNameArray.each do |event|
 
-     nameArray = []
-     eventArray = response_hash["_embedded"]["events"].map
-    #  nameArray = eventArray["_embedded"]["venues"].map
-    
-     eventArray.each do |event|
-        # container1 = ""
-        # container2 = ""
-        # puts
-        print event["name"] + "             "
-        # puts
-        event["_embedded"]["venues"].each do |venue|
-            puts "@" + venue["name"]
+            # print event["name"] + "             "
+            tempNameArray << event["name"]
+            event["_embedded"]["venues"].each do |venue|
+                puts "@" + venue["name"]
+            end
         end
-     end
-
-    #  nameArray.each do |venue|
-    #     puts venue
-    #  end
+        prompt = TTY::Prompt.new
+        userSelection = prompt.select("Pick an event", tempNameArray, cycle: true)
+        puts userSelection
+        exit
+    end
 
 
     # puts response_hash["_embedded"]["events"][0]["_embedded"]["venues"][0]["name"]
