@@ -9,15 +9,25 @@ def welcome
         # q.required true
     if q == "Yes"
         puts "Please enter your user name."
-        this_user_name = gets
+        this_user_name = gets.chomp
+        puts "Thanks, #{this_user_name}!"
     else 
         puts "Let's create a user name!"
         create_new_user
     end
+    main_menu  
+end
 
-      
-    # choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date', 'Purchase a ticket', 'Cancel a ticket', 'Update user name']
-    # prompt.multi_select("What would you like to do?", choices)
+def main_menu
+    prompt = TTY::Prompt.new
+    choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date', 'Purchase a ticket', 'Cancel a ticket', 'Update user name', 'Exit program']
+    response = prompt.select("What would you like to do now?", choices)
+        if response == "See events by zip code"
+            puts "Choose a zip code"
+            this_zip = gets.strip
+            find_events_by_zip_code(this_zip)
+        end
+    main_menu
 end
 
 def create_new_user
