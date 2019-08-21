@@ -19,7 +19,7 @@ def createUser()
     if name.downcase == "exit"
         exit
     else
-        newUser = User.create(userName: name, ticketName: "")
+        $user = User.create(userName: name, ticketName: "")
         puts "Welcome #{name}!"
     end
 end

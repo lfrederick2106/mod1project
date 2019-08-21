@@ -23,13 +23,16 @@ def get_events_from_api(city)
         prompt = TTY::Prompt.new
         userSelection = prompt.select("Pick an event", nameArray, cycle: true)
         # puts userSelection
-        theVenue = nameHash.values_at(userSelection).pop.to_str.tr('[]"', "")
+        theVenue = Venue.create(ticketName: userSelection, venueName: "#{nameHash.values_at(userSelection).pop.to_str.tr('[]"', "")}", userName: $user.userName )
+        # theVenue = nameHash.values_at(userSelection).pop.to_str.tr('[]"', "")
         # puts theVenue
         
         # puts theVenue.pop.to_str.tr('[]"', "")
         # puts sample.to_str.tr('[]"', "")
         # puts userSelection.to_str.tr('[]"', "")
-        newTicket = Ticket.create(ticketName: userSelection, venueName: theVenue, userName: @user)
+        newTicket = Ticket.create(ticketName: userSelection, venueName: theVenue.venueName, userName: $user.userName)
+        $user.ticketName = userSelection
+        $user.save
         exit
     end
 
