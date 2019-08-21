@@ -2,19 +2,19 @@ class User < ActiveRecord::Base
     has_many(:events)
     has_many(:venues, {through: :events})
 
-    attr_reader :name, :user_name
+  #   attr_accessor :userName
 
-  @@all = []
+  # @@all = []
 
-  def initialize(name, user_name)
-    @name = name
-    @user_name = user_name
-    @@all << self
-  end
+  # def initialize(userName)
+  #   # @name = name
+  #   @userName = userName
+  #   @@all << self
+  # end
 
-  def self.all
-    @@all
-  end
+  # def self.all
+  #   @@all
+  # end
 
 #   def full_name
 #     "#{first_name} #{last_name}"

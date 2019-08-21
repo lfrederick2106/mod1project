@@ -3,28 +3,30 @@ prompt = TTY::Prompt.new
 
 def welcome
     # puts out a welcome message here!
+    # break if input == "quit" || input == "exit"
     prompt = TTY::Prompt.new
-    q = prompt.select("Welcome! Do you have a user name?", %w(Yes No)) 
+    q = prompt.select("Hello! Do you have a user name?", %w(Yes No)) 
         # q.required true
     if q == "Yes"
-        puts "Please enter user name"
+        puts "Please enter your user name."
+        this_user_name = gets
     else 
         puts "Let's create a user name!"
         create_new_user
     end
 
       
-    # choices = ['See events by zip code', 'See events by venue name', 'See events by category']
-    # prompt.multi_select("Welcome! What would you like to do?", choices)
+    # choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date', 'Purchase a ticket', 'Cancel a ticket', 'Update user name']
+    # prompt.multi_select("What would you like to do?", choices)
 end
 
 def create_new_user
-    puts "Please enter your name"
-    this_name = gets.capitalize
-    puts "Please enter a user name"
+    prompt = TTY::Prompt.new
+    puts "What would you like your user name to be?"
     this_user_name = gets
-    User.create(this_name, this_user_name)
-    puts "OK, your user name is #{user.name}"
+    u  = User.create({ userName: this_user_name }) 
+  
+    puts "OK, your user name is #{u.userName}."
 end
 
 def get_zip_code_from_user
