@@ -26,10 +26,25 @@ def main_menu
             puts "Choose a zip code."
             this_zip = gets.strip
             find_events_by_zip_code(this_zip)
-        else response == "See events by venue name"
+        elsif response == "See events by venue name"
             puts "Choose a venue."
             event_venue = gets.strip
             find_events_by_venue(event_venue)
+        elsif response == "See events by category"
+            puts "Choose an event type"
+            event_category = gets.strip
+            puts "Choose a city"
+            event_city = gets.strip
+            find_events_by_type(event_category, event_city)
+        elsif response == "See events by date"
+        elsif response == "Purchase a ticket"
+        elsif response == "Cancel a ticket"
+        elsif response == "Update user name"
+        elsif response == "Exit program"
+            puts "Goodbye!👋"
+            exit!
+        else
+            puts "I'm sorry, I'm a computer and I don't understand ¯\_(ツ)_/¯"
         end
     main_menu
 end
@@ -53,12 +68,12 @@ end
 #     event_venue = gets.strip
 # end
 
-def get_event_type_from_user
-    puts "Choose an event type"
-    event_category = gets.strip
-end
+# def get_event_type_from_user
+#     puts "Choose an event type"
+#     event_category = gets.strip
+# end
 
-def get_city_from_user
-    puts "Choose a city"
-    event_city = gets.strip
-end
+# def get_city_from_user
+#     puts "Choose a city"
+#     event_city = gets.strip
+# end
