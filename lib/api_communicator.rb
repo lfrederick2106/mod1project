@@ -1,4 +1,5 @@
-
+require 'rest-client'
+require 'json'
 def find_events_by_zip_code(zip_code)
     events_results_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?apikey=FU4GMZjNo1N2AxOwXrVwwmZDw8MjQD8f&postalCode=#{zip_code}")
     events_results_hash = JSON.parse(events_results_string)
@@ -22,7 +23,6 @@ def find_events_by_type(classificationName, city)
     else
         events_array = events_results_hash["_embedded"]["events"]
     events_array.each do |event|
-        # p event
         puts event["name"]
         end
     end
@@ -37,11 +37,26 @@ def find_events_by_venue(venue)
     else
         events_array = events_results_hash["_embedded"]["events"]
     events_array.each do |event|
-        # p event
         puts event["name"]
         end
     end
 end
+
+def find_events_by_date(start_date, end_date, city)
+    events_results_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?apikey=FU4GMZjNo1N2AxOwXrVwwmZDw8MjQD8f&localStartEndDateTime=#{start_date},#{end_date}&city=#{city}")
+    events_results_hash = JSON.parse(events_results_string)
+    
+    if events_results_hash["_embedded"] == nil
+        puts "No events found"
+    else
+        events_array = events_results_hash["_embedded"]["events"]
+    events_array.each do |event|
+        puts event["name"]
+        end
+    end
+end
+
+# find_events_by_date("2020-07-08T14:00:00", "2020-08-01T14:00:00")
 # find_events_by_zip_code(77001)
 
 

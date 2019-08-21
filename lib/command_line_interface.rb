@@ -20,11 +20,12 @@ end
 
 def main_menu
     prompt = TTY::Prompt.new
-    choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date', 'Purchase a ticket', 'Cancel a ticket', 'Update user name', 'Exit program']
+    choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date range', 'Purchase a ticket', 'Cancel a ticket', 'Update user name', 'Exit program']
     response = prompt.select("What would you like to do now?", choices)
         if response == "See events by zip code"
             puts "Choose a zip code."
             this_zip = gets.strip
+            #this_zip.validate /\A\d{3}\Z/
             find_events_by_zip_code(this_zip)
         elsif response == "See events by venue name"
             puts "Choose a venue."
@@ -36,7 +37,13 @@ def main_menu
             puts "Choose a city"
             event_city = gets.strip
             find_events_by_type(event_category, event_city)
-        elsif response == "See events by date"
+        elsif response == "See events by date range"
+            puts "Choose a city"
+            event_city = gets.strip
+            this_start_date = prompt.ask("Choose a beginning date (example: January 1, 2020)", convert: :datetime).strftime('%FT%T')
+            this_end_date = prompt.ask("Choose an ending date (example: January 1, 2020)", convert: :datetime).strftime('%FT%T')
+            # puts this_start_date, this_end_date
+            find_events_by_date(this_start_date, this_end_date, event_city)
         elsif response == "Purchase a ticket"
         elsif response == "Cancel a ticket"
         elsif response == "Update user name"
@@ -57,23 +64,3 @@ def create_new_user
   
     puts "OK, your user name is #{u.userName}."
 end
-
-# def get_zip_code_from_user
-#     puts "Choose a zip code"
-#     this_zip = gets.strip
-# end
-
-# def get_venue_from_user
-#     puts "Choose a venue"
-#     event_venue = gets.strip
-# end
-
-# def get_event_type_from_user
-#     puts "Choose an event type"
-#     event_category = gets.strip
-# end
-
-# def get_city_from_user
-#     puts "Choose a city"
-#     event_city = gets.strip
-# end

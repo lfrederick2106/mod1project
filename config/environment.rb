@@ -22,8 +22,8 @@ ActiveRecord::Base.logger = nil
 # require_relative "../app/models/Venue.rb"
 
 # require 'bundler/setup'
-# require 'rest-client'
-# require 'json'
+require 'rest-client'
+require 'json'
 # require 'pry'
 
 
