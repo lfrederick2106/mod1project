@@ -23,9 +23,13 @@ def main_menu
     choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date', 'Purchase a ticket', 'Cancel a ticket', 'Update user name', 'Exit program']
     response = prompt.select("What would you like to do now?", choices)
         if response == "See events by zip code"
-            puts "Choose a zip code"
+            puts "Choose a zip code."
             this_zip = gets.strip
             find_events_by_zip_code(this_zip)
+        else response == "See events by venue name"
+            puts "Choose a venue."
+            event_venue = gets.strip
+            find_events_by_venue(event_venue)
         end
     main_menu
 end
@@ -39,15 +43,15 @@ def create_new_user
     puts "OK, your user name is #{u.userName}."
 end
 
-def get_zip_code_from_user
-    puts "Choose a zip code"
-    this_zip = gets.strip
-end
+# def get_zip_code_from_user
+#     puts "Choose a zip code"
+#     this_zip = gets.strip
+# end
 
-def get_venue_from_user
-    puts "Choose a venue"
-    event_venue = gets.strip
-end
+# def get_venue_from_user
+#     puts "Choose a venue"
+#     event_venue = gets.strip
+# end
 
 def get_event_type_from_user
     puts "Choose an event type"
