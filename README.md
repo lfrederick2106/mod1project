@@ -20,9 +20,9 @@ Ticketmonster is a ticket sales app using Ruby. It gives users the ability to se
 
 [(Back to top)](#table-of-contents)
 
-    ```sh
+    `
     ruby bin/run.rb
-    ```
+    `
 
 ### System_Requirements
 
