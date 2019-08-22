@@ -1,10 +1,12 @@
 
-████████╗██╗ ██████╗██╗  ██╗███████╗████████╗███╗   ███╗ ██████╗ ███╗   ██╗███████╗████████╗███████╗██████╗ 
-╚══██╔══╝██║██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝████╗ ████║██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗
-   ██║   ██║██║     █████╔╝ █████╗     ██║   ██╔████╔██║██║   ██║██╔██╗ ██║███████╗   ██║   █████╗  ██████╔╝
-   ██║   ██║██║     ██╔═██╗ ██╔══╝     ██║   ██║╚██╔╝██║██║   ██║██║╚██╗██║╚════██║   ██║   ██╔══╝  ██╔══██╗
-   ██║   ██║╚██████╗██║  ██╗███████╗   ██║   ██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████║   ██║   ███████╗██║  ██║
-   ╚═╝   ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+  _______ _____ _____ _  ________ _______ __  __  ____  _   _  _____ _______ ______ _____  
+ |__   __|_   _/ ____| |/ /  ____|__   __|  \/  |/ __ \| \ | |/ ____|__   __|  ____|  __ \ 
+    | |    | || |    | ' /| |__     | |  | \  / | |  | |  \| | (___    | |  | |__  | |__) |
+    | |    | || |    |  < |  __|    | |  | |\/| | |  | | . ` |\___ \   | |  |  __| |  _  / 
+    | |   _| || |____| . \| |____   | |  | |  | | |__| | |\  |____) |  | |  | |____| | \ \ 
+    |_|  |_____\_____|_|\_\______|  |_|  |_|  |_|\____/|_| \_|_____/   |_|  |______|_|  \_\
+                                                                                           
+                                                                                           
                                                                                                             
 =======
 
@@ -12,7 +14,6 @@
 
 - [About](##about)
 - [Installation](#installation)
-    - [System_Requirements] (###system_requirements)
 - [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)
@@ -53,11 +54,11 @@ Your contributions are always welcome! :tada:
 
 Please ensure your pull request adheres to the following guidelines:
 
--Search previous suggestions before making a new one, as yours may be a duplicate.
--New features, or improvements to the existing features are welcome.
--Keep descriptions short and simple, but descriptive.
--Start the description with a capital and end with a full stop/period.
--Check your spelling and grammar.
+- Search previous suggestions before making a new one, as yours may be a duplicate.
+- New features, or improvements to the existing features are welcome.
+- Keep descriptions short and simple, but descriptive.
+- Start the description with a capital and end with a full stop/period.
+- Check your spelling and grammar.
 
 Thank you for your suggestions!
 
