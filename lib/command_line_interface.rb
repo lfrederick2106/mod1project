@@ -3,10 +3,8 @@ prompt = TTY::Prompt.new
 
 def welcome
     # puts out a welcome message here!
-    # break if input == "quit" || input == "exit"
     prompt = TTY::Prompt.new
     q = prompt.select("Hello! Do you have a user name?", %w(Yes No)) 
-        # q.required true
     if q == "Yes"
         puts "Please enter your user name."
         this_user_name = gets.chomp
@@ -20,8 +18,36 @@ end
 
 def main_menu
     prompt = TTY::Prompt.new
-    choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date range', 'Purchase a ticket', 'Cancel a ticket', 'Update user name', 'Exit program']
+    choices = ['Purchase a ticket', 'Cancel a ticket', 'Update user name', 'Exit program']
     response = prompt.select("What would you like to do now?", choices)
+        if response == "Purchase a ticket"
+            buy_ticket
+        elsif response == "Cancel a ticket"
+            cancel_ticket
+        elsif response == "Update user name"
+            update_user_name
+        elsif response == "Exit program"
+            puts "Goodbye!👋"
+            exit!
+        else
+            puts "I'm sorry, I'm a computer and I don't understand ¯\_(ツ)_/¯"
+        end
+    main_menu
+end
+
+def create_new_user
+    prompt = TTY::Prompt.new
+    puts "What would you like your user name to be?"
+    this_user_name = gets.chomp
+    u  = User.create({ userName: this_user_name }) 
+  
+    puts "OK, your user name is #{u.userName}."
+end
+
+def buy_ticket
+    prompt = TTY::Prompt.new
+    choices = ['See events by zip code', 'See events by venue name', 'See events by category', 'See events by date range']
+    response = prompt.select("How would you like to select a ticket?", choices)
         if response == "See events by zip code"
             puts "Choose a zip code."
             this_zip = gets.strip
@@ -42,25 +68,32 @@ def main_menu
             event_city = gets.strip
             this_start_date = prompt.ask("Choose a beginning date (example: January 1, 2020)", convert: :datetime).strftime('%FT%T')
             this_end_date = prompt.ask("Choose an ending date (example: January 1, 2020)", convert: :datetime).strftime('%FT%T')
-            # puts this_start_date, this_end_date
             find_events_by_date(this_start_date, this_end_date, event_city)
-        elsif response == "Purchase a ticket"
-        elsif response == "Cancel a ticket"
-        elsif response == "Update user name"
-        elsif response == "Exit program"
-            puts "Goodbye!👋"
-            exit!
         else
             puts "I'm sorry, I'm a computer and I don't understand ¯\_(ツ)_/¯"
         end
-    main_menu
 end
 
-def create_new_user
-    prompt = TTY::Prompt.new
-    puts "What would you like your user name to be?"
-    this_user_name = gets
-    u  = User.create({ userName: this_user_name }) 
-  
-    puts "OK, your user name is #{u.userName}."
+def cancel_ticket
+    # LIKE THIS:
+    # user = User.find_by(name: 'David')
+    # user.destroy
+
+    choices = Ticket.where(userName: this_user_name)
+    ticket_to_destroy = prompt.select("Which ticket would you like to cancel?", choices)
+    ticket_to_destroy.destroy
+end
+
+def update_user_name
+    # LIKE THIS:
+    # user = User.find_by(name: 'David')
+    # user.update(name: 'Dave')
+    
+    puts "What would you like your new user name to be?"
+    new_user_name = gets.chomp
+
+    user = User.find_by(userName: this_user_name)
+    user.update(userName: create_new_user)
+
+    puts "OK, your new user name is #{user.userName}."
 end
