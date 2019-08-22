@@ -50,7 +50,7 @@ def buy_ticket
     response = prompt.select("How would you like to select a ticket?", choices)
         if response == "See events by zip code"
             puts "Choose a zip code."
-            this_zip = gets.strip
+            this_zip = gets.strip #{validates_format_of :this_zip, :with => /^\d{5}(-\d{4})?$/, :message => "should be in the form 12345"}
             #this_zip.validate /\A\d{3}\Z/
             find_events_by_zip_code(this_zip)
         elsif response == "See events by venue name"

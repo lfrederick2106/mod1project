@@ -1,5 +1,9 @@
 require 'rest-client'
 require 'json'
+
+# validates :zipcode, zipcode: { country_code_attribute: :postal_code }
+# validates_format_of :zip_code, :with => /^\d{5}(-\d{4})?$/, :message => "should be in the form 12345"
+
 def find_events_by_zip_code(zip_code)
     events_results_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?apikey=FU4GMZjNo1N2AxOwXrVwwmZDw8MjQD8f&postalCode=#{zip_code}")
     events_results_hash = JSON.parse(events_results_string)

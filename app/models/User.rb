@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
     validates :userName, presence: true
     validates :userName, uniqueness: true
+    validates :userName, length: { maximum: 10,
+      too_long: "10 characters is the maximum allowed" }
     validates_associated :events
     validates_associated :venues, {through: :events}
 
