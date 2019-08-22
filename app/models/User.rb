@@ -2,23 +2,10 @@ class User < ActiveRecord::Base
     has_many(:events)
     has_many(:venues, {through: :events})
 
-  #   attr_accessor :userName
-
-  # @@all = []
-
-  # def initialize(userName)
-  #   # @name = name
-  #   @userName = userName
-  #   @@all << self
-  # end
-
-  # def self.all
-  #   @@all
-  # end
-
-#   def full_name
-#     "#{first_name} #{last_name}"
-#   end
+    validates :userName, presence: true
+    validates :userName, uniqueness: true
+    validates_associated :events
+    validates_associated :venues, {through: :events}
 
   def venues
     tickets = []

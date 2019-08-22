@@ -93,7 +93,7 @@ def update_user_name
     new_user_name = gets.chomp
 
     user = User.find_by(userName: this_user_name)
-    user.update(userName: create_new_user)
+    user.update(userName: new_user_name)
 
     puts "OK, your new user name is #{user.userName}."
 end
