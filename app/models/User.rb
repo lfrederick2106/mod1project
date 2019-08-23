@@ -1,25 +1,10 @@
 class User < ActiveRecord::Base
-    has_many(:events)
-    has_many(:venues, {through: :events})
 
-    validates :userName, presence: true
-    validates :userName, uniqueness: { message: 'That user name already exists.' }
-    validates :userName, length: { maximum: 10,
-      too_long: "10 characters is the maximum allowed" }
-    validates_associated :events
-    validates_associated :venues, {through: :events}
+  has_many :tickets
+  has_many :venues, through: :tickets
 
-  def venues
-    tickets = []
-    Ticket.all.each do | ticket | tickets << ticket.venue
-      if ticket.user == self
-      end
-    end
-    return tickets
-  end
-
-  def tickets
-    Ticket.all.select { | ticket | ticket.user == self}
-  end
-
+  validates :userName, presence: true
+  validates :userName, uniqueness: { message: 'That user name already exists.' }
+  validates :userName, length: { maximum: 10,
+    too_long: "10 characters is the maximum allowed" }
 end
